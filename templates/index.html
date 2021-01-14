@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.5/socket.io.js" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf-8">
+    var socket = io();
+    socket.on('message_response', function(msg){
+      console.log(msg)
+    });
+    socket.on('connect', function() {
+      socket.emit('message', {data: "ping"});
+      document.getElementById("container").classList.remove("hidden");
+    });
+
+    function move(num){
+      socket.emit('move', {move_dir: num});
+    }
+
+    function increase_speed(){
+        socket.emit('speed', {speed: 0});
+    }
+
+    function decrease_speed(){
+      socket.emit('speed', {speed: 1});
+    }
+</script>
+
+<div id="container" class="hidden">
+  <p><button onclick="move(1)">foreward</button></p>
+  <p><button onclick="move(4)">left</button><button onclick="move(5)">stop</button><button onclick="move(2)">right</button></p>
+  <p><button onclick="move(3)">back</button></p>
+  <p style="padding: 50px;" ></p>
+  <p><button onclick="increase_speed()">Speed Up</button></p>
+  <p><button onclick="decrease_speed()">Speed Down</button></p>
+</div>
+
+
+{% endblock %}
