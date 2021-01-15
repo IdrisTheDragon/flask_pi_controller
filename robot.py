@@ -36,6 +36,13 @@ def setupGPIO():
     Rpwm = GPIO.PWM(Ren,1000)
     Rpwm.start(25)
 
+def teardownGPIO():
+    GPIO.output(R1,GPIO.LOW)
+    GPIO.output(R2,GPIO.LOW)
+    GPIO.output(L1,GPIO.LOW)
+    GPIO.output(L2,GPIO.LOW)
+    GPIO.cleanup()
+
 @robot_move.connect
 def move(app, move_dir):
     if move_dir == 1:

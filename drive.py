@@ -1,6 +1,6 @@
 from flask import Flask, redirect, url_for, render_template, request, flash 
 from flask_socketio import SocketIO, emit
-from robot import robot_move, robot_speed, setupGPIO
+from robot import robot_move, robot_speed, setupGPIO, teardownGPIO
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
@@ -26,5 +26,8 @@ def speed(data):
     robot_speed.send(app,speed=data['speed'])
 
 if __name__ == '__main__':
-    setupGPIO()
-    socketio.run(app, host='0.0.0.0')
+    try:
+        setupGPIO()
+        socketio.run(app, host='0.0.0.0')
+    except KeyboardInterrupt:
+        teardownGPIO()
