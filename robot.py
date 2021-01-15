@@ -16,6 +16,7 @@ robot_speed = namespace.signal('robot_speed')
 
 def setupGPIO():
     # mode 
+    GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BCM)
 
     #L motor
@@ -42,6 +43,7 @@ def teardownGPIO():
     GPIO.output(L1,GPIO.LOW)
     GPIO.output(L2,GPIO.LOW)
     GPIO.cleanup()
+    print('GPIO cleanup done')
 
 @robot_move.connect
 def move(app, move_dir):

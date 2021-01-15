@@ -29,5 +29,11 @@ if __name__ == '__main__':
     try:
         setupGPIO()
         socketio.run(app, host='0.0.0.0')
+        print('ready')
     except KeyboardInterrupt:
+        print('safe end')
+    except Exception as error:
+        print('other error')
+        print(error)
+    finally:  
         teardownGPIO()
