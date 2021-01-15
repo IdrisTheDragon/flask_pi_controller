@@ -49,10 +49,10 @@ def teardownGPIO():
 def move(app, move_dir):
     if move_dir == 1:
         print('foreward')
-        GPIO.output(R1,GPIO.HIGH)
-        GPIO.output(R2,GPIO.LOW)
-        GPIO.output(L1,GPIO.HIGH)
-        GPIO.output(L2,GPIO.LOW)
+        GPIO.output(R1,GPIO.LOW)
+        GPIO.output(R2,GPIO.HIGH)
+        GPIO.output(L1,GPIO.LOW)
+        GPIO.output(L2,GPIO.HIGH)
     elif move_dir == 2:
         print('right')
         GPIO.output(R1,GPIO.HIGH)
@@ -61,10 +61,10 @@ def move(app, move_dir):
         GPIO.output(L2,GPIO.HIGH)
     elif move_dir == 3:
         print('back')
-        GPIO.output(R1,GPIO.LOW)
-        GPIO.output(R2,GPIO.HIGH)
-        GPIO.output(L1,GPIO.LOW)
-        GPIO.output(L2,GPIO.HIGH)
+        GPIO.output(R1,GPIO.HIGH)
+        GPIO.output(R2,GPIO.LOW)
+        GPIO.output(L1,GPIO.HIGH)
+        GPIO.output(L2,GPIO.LOW)
     elif move_dir == 4:
         print('left')
         GPIO.output(R1,GPIO.LOW)
